@@ -3,6 +3,7 @@ let buffer = "0";
 let previousOperator; 
 
 const screen = document.querySelector('.screen');
+
 function buttonClick(value){
     if(isNaN(value)){
         handleSymbol(value);
@@ -15,6 +16,7 @@ function buttonClick(value){
 
 function handleSymbol(symbol){
     switch(symbol){
+
         case 'C':
         buffer = '0';
         runingTotal = 0;
@@ -30,7 +32,7 @@ function handleSymbol(symbol){
             runningTotal = 0;
             break;
 
-            case '=': 
+        case '=': 
             if(previousOperator === null){
                 return
             }
@@ -46,12 +48,12 @@ function handleSymbol(symbol){
            buffer = '0';
 
         }else{
-            buffer = buffer.toString(0, buffer.length -1);
+            buffer = buffer.substring(0, buffer.length -1);
 
         } break;
         case '+':
-        case '-':
-        case 'x':
+        case '−':
+        case '×':
         case '÷':
              handleMath(symbol);
              break; 
@@ -78,9 +80,9 @@ function flushOperation (intBuffer){
     if(previousOperator === '+'){
         runningTotal += intBuffer;
 
-    }else if (previousOperator === '-'){
+    }else if (previousOperator === '−'){
         runningTotal -=intBuffer;
-    }else if (previousOperator=== 'x'){
+    }else if (previousOperator=== '×'){
         runningTotal *= intBuffer
     }else if(previousOperator === '÷'){
         runningTotal /= intBuffer;
@@ -95,8 +97,10 @@ function handleNumber(numberString){
     }
 }
 function init(){
-    document.querySelector('.calc-buttons').addEventListener('click', function (event){
-     buttonClick(event.target.innerText);
-    });
-    
+    document.querySelector('.calc-buttons').
+    addEventListener('click', function (event){
+    buttonClick(event.target.innerText);
+    })
 }
+
+init();
